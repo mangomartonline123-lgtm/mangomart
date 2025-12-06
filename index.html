@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#059669">
+    <meta name="description" content="Mango Mart - Fresh Groceries, Quality Products, Fast Delivery. Shop online from India's trusted grocery store.">
+    <meta name="keywords" content="groceries, online shopping, fresh vegetables, fruits, organic, delivery">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mango Mart">
+    <title>MangoMart | Premium Fresh Groceries & Daily Essentials</title>
+    
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="canonical" href="/">
+    <meta property="og:title" content="MangoMart | Premium Fresh Groceries & Daily Essentials">
+    <meta property="og:description" content="Fresh groceries, fast delivery. Shop India's trusted online store.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/">
+    <meta property="og:image" content="icons/icon-512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MangoMart | Premium Fresh Groceries & Daily Essentials">
+    <meta name="twitter:description" content="Fresh groceries, fast delivery. Shop India's trusted online store.">
+    <meta name="twitter:image" content="icons/icon-512.png">
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://nruafgayqspvluubsvwb.supabase.co" crossorigin>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Suppress Tailwind CDN production warning (acceptable for GitHub Pages)
+        if (window.tailwind) {
+            const originalWarn = console.warn;
+            console.warn = function(...args) {
+                if (args[0] && typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com should not be used in production')) {
+                    return; // Suppress this specific warning
+                }
+                originalWarn.apply(console, args);
+            };
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Supabase -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    
+    <!-- Recharts for Admin Dashboard -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script>
+    
+    <!-- Razorpay Payment Gateway -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
+    <!-- EmailJS for Email Sending -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="main.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+    
+    <!-- Main App Container -->
+    <div id="app"></div>
+    
+    <!-- Scripts -->
+    <script src="mango-mart.js"></script>
+</body>
+</html>
