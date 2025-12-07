@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Mango Mart</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="canonical" href="/thanks.html">
+    <meta property="og:title" content="Order Confirmed - Mango Mart">
+    <meta property="og:description" content="Thank you for your order!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/thanks.html">
+    <meta property="og:image" content="/icons/icon-512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Order Confirmed - Mango Mart">
+    <meta name="twitter:description" content="Thank you for your order!">
+    <meta name="twitter:image" content="/icons/icon-512.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .success-icon i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        h1 {
+            color: #1f2937;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .order-details {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid #10b981;
+        }
+
+        .order-details h3 {
+            color: #1f2937;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 0;
+        }
+
+        .detail-row:last-child {
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .detail-label {
+            color: #6b7280;
+        }
+
+        .detail-value {
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+            transform: translateY(-2px);
+        }
+
+        .actions {
+            margin-top: 2rem;
+        }
+
+        .loading {
+            display: none;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .actions {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon" id="success-icon">
+            <i data-lucide="check"></i>
+        </div>
+        
+        <h1>Thank You!</h1>
+        <p class="subtitle">Your order has been placed successfully. We'll send you a confirmation email shortly.</p>
+        
+        <div class="order-details" id="order-details">
+            <h3>Order Details</h3>
+            <div class="detail-row">
+                <span class="detail-label">Order ID:</span>
+                <span class="detail-value" id="order-id">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Total Amount:</span>
+                <span class="detail-value" id="total-amount">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Order Date:</span>
+                <span class="detail-value" id="order-date">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Status:</span>
+                <span class="detail-value" style="color: #10b981;">Confirmed</span>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <a href="index.html" class="btn btn-primary" id="back-to-home">
+                Back to Home
+            </a>
+            <a href="orders.html" class="btn btn-secondary">
+                View Orders
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            window.lucide.createIcons();
+        } else {
+            const iconElement = document.querySelector('#success-icon i');
+            if (iconElement) {
+                const fallback = iconElement.getAttribute('data-lucide') || '';
+                if (fallback === 'check') {
+                    iconElement.textContent = '✔';
+                } else {
+                    iconElement.textContent = '•';
+                }
+            }
+        }
+        
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId');
+        const total = urlParams.get('total');
+        const date = urlParams.get('date');
+        
+        // Update order details
+        document.getElementById('order-id').textContent = orderId || 'N/A';
+        document.getElementById('total-amount').textContent = total || 'N/A';
+        document.getElementById('order-date').textContent = date || new Date().toLocaleDateString();
+        
+        // Handle back gesture/button to redirect to homepage
+        // Push a state to history so we can intercept back navigation
+        window.history.pushState({ page: 'thanks' }, '', window.location.href);
+        
+        // Intercept back button/gesture
+        window.addEventListener('popstate', function(event) {
+            // Redirect to homepage when back is pressed
+            window.location.href = 'index.html';
+        });
+        
+        // Also handle browser back button on mobile
+        window.addEventListener('pageshow', function(event) {
+            // If page is loaded from cache (back/forward navigation)
+            if (event.persisted) {
+                // Redirect to homepage
+                window.location.href = 'index.html';
+            }
+        });
+        
+        // Add some animation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 0.6s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Ensure back to home button redirects properly
+            const backToHomeBtn = document.getElementById('back-to-home');
+            if (backToHomeBtn) {
+                backToHomeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'index.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
